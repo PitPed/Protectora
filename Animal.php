@@ -32,7 +32,7 @@ class Animal extends Crud
         $this->$property = $value;
     }
 
-    protected function crear()
+    public function crear()
     {
         $sql = "INSERT INTO animal (id, nombre, especie, raza, genero, color, edad) VALUES (:id, :nombre, :especie, :raza, :genero, :color, :edad)";
         $consulta = $this->conexion->prepare($sql);
@@ -48,7 +48,7 @@ class Animal extends Crud
         $consulta->execute();
     }
 
-    protected function actualizar()
+    public function actualizar()
     {
         $sql = "UPDATE animal SET nombre = :nombre, especie = :especie, raza = :raza, genero = :genero, color = :color, edad = :edad WHERE id = :id";
         $consulta = $this->conexion->prepare($sql);

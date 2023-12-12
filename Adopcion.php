@@ -29,7 +29,7 @@ class Adopcion extends Crud
         $this->$property = $value;
     }
 
-    protected function crear()
+    public function crear()
     {
         $sql = "INSERT INTO adopcion (id, idAnimal, idUsuario, fecha, razon) VALUES (:id, :idAnimal, :idUsuario, :fecha, :razon)";
         $consulta = $this->conexion->prepare($sql);
@@ -43,7 +43,7 @@ class Adopcion extends Crud
         $consulta->execute();
     }
 
-    protected function actualizar()
+    public function actualizar()
     {
         $sql = "UPDATE adopcion SET idAnimal = :idAnimal, idUsuario = :idUsuario, fecha = :fecha, razon = :razon WHERE id = :id";
         $consulta = $this->conexion->prepare($sql);

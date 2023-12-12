@@ -42,5 +42,8 @@ abstract class Crud extends Conexion
         return $query->execute();
     }
 
+    public abstract function crear();
+    public abstract function actualizar();
+
 }
 ?>
