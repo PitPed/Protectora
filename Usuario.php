@@ -31,32 +31,32 @@ class Usuario extends Crud
         $this->$property = $value;
     }
 
-    protected function crear()
+    public function crear()
     {
-        $sql = "INSERT INTO usuario (id, nombre, apellido, sexo, direccion, telefono) VALUES (?, ?, ?, ?, ?, ?, )";
+        $sql = "INSERT INTO usuarios(id, nombre, apellido, sexo, direccion, telefono) VALUES( :id , :nombre , :apellido, :sexo, :direccion, :telefono)";
         $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(1, $this->id);
-        $consulta->bindParam(2, $this->nombre);
-        $consulta->bindParam(3, $this->apellido);
-        $consulta->bindParam(4, $this->sexo);
-        $consulta->bindParam(5, $this->direccion);
-        $consulta->bindParam(6, $this->telefono);
+        $consulta->bindParam(":id", $this->id);
+        $consulta->bindParam(":nombre", $this->nombre);
+        $consulta->bindParam(":apellido", $this->apellido);
+        $consulta->bindParam(":sexo", $this->sexo);
+        $consulta->bindParam(":direccion", $this->direccion);
+        $consulta->bindParam(":telefono", $this->telefono);
 
         $consulta->execute();
     }
 
-    protected function actualizar()
+    public function actualizar()
     {
-        $sql = "UPDATE usuario SET nombre = ?, apellido = ?, sexo = ?, direccion = ?, telefono = ? WHERE id = ?";
+        $sql = "UPDATE usuarios SET nombre = :nombre, apellido = :apellido, sexo = :sexo, direccion = :direccion, telefono = :telefono WHERE id = :id";
         $consulta = $this->conexion->prepare($sql);
+        $consulta->bindParam(":id", $this->id);
+        $consulta->bindParam(":nombre", $this->nombre);
+        $consulta->bindParam(":apellido", $this->apellido);
+        $consulta->bindParam(":sexo", $this->sexo);
+        $consulta->bindParam(":direccion", $this->direccion);
+        $consulta->bindParam(":telefono", $this->telefono);
 
-        $consulta->bindParam(1, $this->nombre);
-        $consulta->bindParam(2, $this->especie);
-        $consulta->bindParam(3, $this->raza);
-        $consulta->bindParam(4, $this->genero);
-        $consulta->bindParam(5, $this->color);
-        $consulta->bindParam(7, $this->id);
 
         $consulta->execute();
     }

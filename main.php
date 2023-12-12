@@ -11,5 +11,5 @@ $paco = new Usuario('77', 'Paco', 'Suárez', 'M', 'Calle Grande 4', '987654321')
 
 //print_r($paco->obtieneTodos());
 
-print_r($paco->obtieneDeID(2));
+print_r($paco->crear());
 ?>

@@ -11,7 +11,7 @@ abstract class Crud extends Conexion
     public function __construct($tableName, $tableIdColumn)
     {
         $this->tabla = new Tabla($tableName, $tableIdColumn);
-        $this->connection = new Conexion("localhost", 3333, "protectora_animales", "root", "");
+        $this->connection = new Conexion("localhost", 3306, "protectora_animales", "root", "");
         $this->conexion = $this->connection->getConnection();
     }
 

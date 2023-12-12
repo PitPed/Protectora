@@ -31,28 +31,28 @@ class Adopcion extends Crud
 
     protected function crear()
     {
-        $sql = "INSERT INTO adopcion (id, idAnimal, idUsuario, fecha, razon) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO adopcion (id, idAnimal, idUsuario, fecha, razon) VALUES (:id, :idAnimal, :idUsuario, :fecha, :razon)";
         $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(1, $this->id);
-        $consulta->bindParam(2, $this->idAnimal);
-        $consulta->bindParam(3, $this->idUsuario);
-        $consulta->bindParam(4, $this->fecha);
-        $consulta->bindParam(5, $this->razon);
+        $consulta->bindParam(":id", $this->id);
+        $consulta->bindParam(":idAnimal", $this->idAnimal);
+        $consulta->bindParam(":idUsuario", $this->idUsuario);
+        $consulta->bindParam(":fecha", $this->fecha);
+        $consulta->bindParam(":razon", $this->razon);
 
         $consulta->execute();
     }
 
     protected function actualizar()
     {
-        $sql = "UPDATE adopcion SET idAnimal = ?, idUsuario = ?, fecha = ?, razon = ? WHERE id = ?";
+        $sql = "UPDATE adopcion SET idAnimal = :idAnimal, idUsuario = :idUsuario, fecha = :fecha, razon = :razon WHERE id = :id";
         $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(1, $this->idAnimal);
-        $consulta->bindParam(2, $this->idUsuario);
-        $consulta->bindParam(3, $this->fecha);
-        $consulta->bindParam(4, $this->razon);
-        $consulta->bindParam(5, $this->id);
+        $consulta->bindParam(":id", $this->id);
+        $consulta->bindParam(":idAnimal", $this->idAnimal);
+        $consulta->bindParam(":idUsuario", $this->idUsuario);
+        $consulta->bindParam(":fecha", $this->fecha);
+        $consulta->bindParam(":razon", $this->razon);
 
         $consulta->execute();
     }

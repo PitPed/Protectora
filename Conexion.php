@@ -2,11 +2,11 @@
 
 class Conexion
 {
-    private $DB_SERVER = "localhost";
-    private $DB_PORT = "3333";
-    private $DB_NAME = "pufosa";
-    private $DB_USER = "root";
-    private $DB_PASSWORD = "";
+    private $DB_SERVER;
+    private $DB_PORT;
+    private $DB_NAME;
+    private $DB_USER;
+    private $DB_PASSWORD;
     private $DB_DSN;
     private PDO $conexion;
 
