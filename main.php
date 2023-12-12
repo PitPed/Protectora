@@ -1,7 +1,7 @@
 <?php
-include_once "Animal.php";
-include_once "Adopcion.php";
-include_once "Usuario.php";
+include_once "modelo/Animal.php";
+include_once "modelo/Adopcion.php";
+include_once "modelo/Usuario.php";
 
 $garfield = new Animal('33', 'Garfield', 'Gato', 'Gato Naranja', 'Macho', 'Naranja', '27');
 

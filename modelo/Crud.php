@@ -1,5 +1,5 @@
 <?php
-include_once "conexion.php";
+include_once "Conexion.php";
 include_once "Tabla.php";
 abstract class Crud extends Conexion
 {
