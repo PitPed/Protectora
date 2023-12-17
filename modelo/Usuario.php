@@ -33,17 +33,28 @@ class Usuario extends Crud
 
     public function crear()
     {
-        $sql = "INSERT INTO usuarios(id, nombre, apellido, sexo, direccion, telefono) VALUES( :id , :nombre , :apellido, :sexo, :direccion, :telefono)";
-        $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(":id", $this->id);
-        $consulta->bindParam(":nombre", $this->nombre);
-        $consulta->bindParam(":apellido", $this->apellido);
-        $consulta->bindParam(":sexo", $this->sexo);
-        $consulta->bindParam(":direccion", $this->direccion);
-        $consulta->bindParam(":telefono", $this->telefono);
+        $stmt = $this->conexion->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        
+        if($stmt->rowCount() == 0){
 
-        $consulta->execute();
+            $sql = "INSERT INTO usuarios(id, nombre, apellido, sexo, direccion, telefono) VALUES( :id , :nombre , :apellido, :sexo, :direccion, :telefono)";
+            $consulta = $this->conexion->prepare($sql);
+
+            $consulta->bindParam(":id", $this->id);
+            $consulta->bindParam(":nombre", $this->nombre);
+            $consulta->bindParam(":apellido", $this->apellido);
+            $consulta->bindParam(":sexo", $this->sexo);
+            $consulta->bindParam(":direccion", $this->direccion);
+            $consulta->bindParam(":telefono", $this->telefono);
+
+            $consulta->execute();
+        }
+        else {
+            echo "Error: El ID ya existe, escoja otro.";
+        }
     }
 
     public function actualizar()

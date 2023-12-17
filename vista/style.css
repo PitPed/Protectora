@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 5px;
+    background-color: rgb(221, 221, 221);
+}
+
+.btn-form {
+    background-color: rgb(50, 148, 50);
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+}

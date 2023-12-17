@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="vista/style.css">
+<title>Protectora Animales</title>
+
+<body>
 <?php
 
 include_once "modelo/Animal.php";
@@ -38,6 +42,16 @@ if (isset($_POST["action"])) {
 
             $newAdop = new Adopcion($_POST['id'], $_POST['idAnimal'], $_POST['idUsuario'], $_POST['fecha'], $_POST['razon']);
             $newAdop->crear();
+        } 
+        elseif ($_SESSION["activeView"] == "animal") {
+
+            $newAnim = new Animal($_POST['id'], $_POST['nombre'], $_POST['especie'], $_POST['raza'], $_POST['genero'], $_POST['color'], $_POST['edad']);
+            $newAnim->crear();
+        } 
+        elseif ($_SESSION["activeView"] == "usuario") {
+
+            $newUser = new Usuario($_POST['id'], $_POST['nombre'], $_POST['apellido'], $_POST['sexo'], $_POST['direccion'], $_POST['telefono']);
+            $newUser->crear();       
         }
     }
 
@@ -47,11 +61,28 @@ if (isset($_POST["action"])) {
             $newAdop = new Adopcion($_POST['id'], $_POST['idAnimal'], $_POST['idUsuario'], $_POST['fecha'], $_POST['razon']);
             $newAdop->actualizar();
         }
+        elseif ($_SESSION["activeView"] == "animal") {
+
+            $newAnim = new Animal($_POST['id'], $_POST['nombre'], $_POST['especie'], $_POST['raza'], $_POST['genero'], $_POST['color'], $_POST['edad']);
+            $newAnim->actualizar();
+        } 
+        elseif ($_SESSION["activeView"] == "usuario") {
+
+            $newUser = new Usuario($_POST['id'], $_POST['nombre'], $_POST['apellido'], $_POST['sexo'], $_POST['direccion'], $_POST['telefono']);
+            $newUser->actualizar();       
+        }
     }
 
     if ($_POST["action"] == "Borrar") {
         if ($_SESSION["activeView"] == "adopcion") {
             $adopcionDummy->borrar($_POST['id']);
+        } 
+        elseif($_SESSION["activeView"] == "animal"){
+
+            $animalDummy->borrar($_POST['id']);
+        } elseif ($_SESSION["activeView"] == "usuario"){
+            
+            $usuarioDummy->borrar($_POST['id']);
         }
     }
 }
@@ -60,3 +91,5 @@ if (isset($_POST["action"])) {
 
 include($views[$_SESSION["activeView"]]);
 ?>
+
+</body>
