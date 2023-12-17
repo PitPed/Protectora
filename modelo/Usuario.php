@@ -1,27 +1,26 @@
 <?php
-include_once "Crud.php";
-class Animal extends Crud
+include_once 'Crud.php';
+
+class Usuario extends Crud
 {
     private $id;
     private $nombre;
-    private $especie;
-    private $raza;
-    private $genero;
-    private $color;
-    private $edad;
+    private $apellido;
+    private $sexo;
+    private $direccion;
+    private $telefono;
 
-
-    function __construct($id, $nombre, $especie, $raza, $genero, $color, $edad)
+    function __construct($id, $nombre, $apellido, $sexo, $direccion, $telefono)
     {
-        parent::__construct('animal', 'id');
+        parent::__construct('usuarios', 'id');
         $this->id = $id;
         $this->nombre = $nombre;
-        $this->especie = $especie;
-        $this->raza = $raza;
-        $this->genero = $genero;
-        $this->color = $color;
-        $this->edad = $edad;
+        $this->apellido = $apellido;
+        $this->sexo = $sexo;
+        $this->direccion = $direccion;
+        $this->telefono = $telefono;
     }
+
     public function __get($property)
     {
         return $this->$property;
@@ -34,21 +33,22 @@ class Animal extends Crud
 
     public function crear()
     {
-        $stmt = $this->conexion->prepare("SELECT * FROM animal WHERE id = :id");
+
+        $stmt = $this->conexion->prepare("SELECT * FROM usuarios WHERE id = :id");
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         
         if($stmt->rowCount() == 0){
-            $sql = "INSERT INTO animal (id, nombre, especie, raza, genero, color, edad) VALUES (:id, :nombre, :especie, :raza, :genero, :color, :edad)";
+
+            $sql = "INSERT INTO usuarios(id, nombre, apellido, sexo, direccion, telefono) VALUES( :id , :nombre , :apellido, :sexo, :direccion, :telefono)";
             $consulta = $this->conexion->prepare($sql);
 
             $consulta->bindParam(":id", $this->id);
             $consulta->bindParam(":nombre", $this->nombre);
-            $consulta->bindParam(":especie", $this->especie);
-            $consulta->bindParam(":raza", $this->raza);
-            $consulta->bindParam(":genero", $this->genero);
-            $consulta->bindParam(":color", $this->color);
-            $consulta->bindParam(":edad", $this->edad);
+            $consulta->bindParam(":apellido", $this->apellido);
+            $consulta->bindParam(":sexo", $this->sexo);
+            $consulta->bindParam(":direccion", $this->direccion);
+            $consulta->bindParam(":telefono", $this->telefono);
 
             $consulta->execute();
         }
@@ -59,19 +59,17 @@ class Animal extends Crud
 
     public function actualizar()
     {
-        $sql = "UPDATE animal SET nombre = :nombre, especie = :especie, raza = :raza, genero = :genero, color = :color, edad = :edad WHERE id = :id";
+        $sql = "UPDATE usuarios SET nombre = :nombre, apellido = :apellido, sexo = :sexo, direccion = :direccion, telefono = :telefono WHERE id = :id";
         $consulta = $this->conexion->prepare($sql);
-
         $consulta->bindParam(":id", $this->id);
         $consulta->bindParam(":nombre", $this->nombre);
-        $consulta->bindParam(":especie", $this->especie);
-        $consulta->bindParam(":raza", $this->raza);
-        $consulta->bindParam(":genero", $this->genero);
-        $consulta->bindParam(":color", $this->color);
-        $consulta->bindParam(":edad", $this->edad);
+        $consulta->bindParam(":apellido", $this->apellido);
+        $consulta->bindParam(":sexo", $this->sexo);
+        $consulta->bindParam(":direccion", $this->direccion);
+        $consulta->bindParam(":telefono", $this->telefono);
+
 
         $consulta->execute();
     }
 }
 
-?>
