@@ -23,9 +23,10 @@ $adop = new Adopcion(50, 33, 77, "2000-01-01", "Se sentía solo");
 
 $adopciones = $adop->obtieneTodos();
 
-foreach ($adopciones as $adopcion) {
-    echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
-    echo '<label for="id">ID:</label>
+if ($adopciones) {
+    foreach ($adopciones as $adopcion) {
+        echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
+        echo '<label for="id">ID:</label>
     <input type="number" name="id" value="' . $adopcion->id . '" readonly>
     <label for="idAnimal">ID Animal:</label>
     <input type="number" name="idAnimal" value="' . $adopcion->idAnimal . '">
@@ -38,8 +39,10 @@ foreach ($adopciones as $adopcion) {
     <input class="btn-form" type="submit" value="Actualizar"> 
     <input class="btn-form" type="submit" name="action" value="Borrar">';
 
-    echo '</form>';
+        echo '</form>';
+    }
+} else {
+    echo "No hay adopciones registradas";
 }
 
 ?>
-

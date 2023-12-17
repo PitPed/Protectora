@@ -23,7 +23,7 @@ abstract class Crud extends Conexion
         $clase = $this::class;
         foreach ($rows as $i => $row)
             $users[$i] = new $clase(...$row);
-        return $users;
+        return isset($users) ? $users : array();
     }
 
     public function obtieneDeID($id)

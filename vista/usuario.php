@@ -24,9 +24,10 @@ $usuarioDummy = new Usuario('77', 'Paco', 'Suárez', 'Masculino', 'Calle Grande 
 
 $usuarios = $usuarioDummy->obtieneTodos();
 
-foreach ($usuarios as $user) {
-    echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
-    echo '<label for="id">ID:</label>
+if ($usuarios) {
+    foreach ($usuarios as $user) {
+        echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
+        echo '<label for="id">ID:</label>
     <input type="number" name="id" value="' . $user->id . '" readonly>
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" value="' . $user->nombre . '">
@@ -41,7 +42,10 @@ foreach ($usuarios as $user) {
     <input class="btn-form" type="submit" value="Actualizar"> 
     <input class="btn-form" type="submit" name="action" value="Borrar">';
 
-    echo '</form>';
+        echo '</form>';
+    }
+} else {
+    echo "No hay usuarios registrados";
 }
 
 ?>

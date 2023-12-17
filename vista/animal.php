@@ -26,9 +26,10 @@ $animalDummy = new Animal('33', 'Garfield', 'Gato', 'Gato Naranja', 'Macho', 'Na
 
 $animales = $animalDummy->obtieneTodos();
 
-foreach ($animales as $animal) {
-    echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
-    echo '<label for="id">ID:</label>
+if ($animales) {
+    foreach ($animales as $animal) {
+        echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
+        echo '<label for="id">ID:</label>
     <input type="number" name="id" value="' . $animal->id . '" readonly>
     <label for="Nombre">Nombre:</label>
     <input type="text" name="nombre" value="' . $animal->nombre . '">
@@ -45,7 +46,10 @@ foreach ($animales as $animal) {
     <input class="btn-form" type="submit" value="Actualizar"> 
     <input class="btn-form" type="submit" name="action" value="Borrar">';
 
-    echo '</form>';
+        echo '</form>';
+    }
+} else {
+    echo "No hay animales registrados";
 }
 
 ?>
