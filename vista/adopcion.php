@@ -1,4 +1,6 @@
-<h1>Adopción</h1>
+<h1>Adopciones</h1>
+
+
 <!-- Formulario de nueva adopción -->
 <form action="" method="POST">
     <input type="hidden" name="action" value="crear">
@@ -12,7 +14,7 @@
     <input type="date" name="fecha">
     <label for="razon">Razón:</label>
     <input type="text" name="razon">
-    <input type="submit" value="Crear">
+    <input style="" class="btn-form" type="submit" value="Crear">
 </form>
 
 <?php
@@ -24,7 +26,7 @@ $adopciones = $adop->obtieneTodos();
 foreach ($adopciones as $adopcion) {
     echo '<form action="" method="post"><input type="hidden" name="action" value="actualizar">';
     echo '<label for="id">ID:</label>
-    <input type="number" name="id" value="' . $adopcion->id . '">
+    <input type="number" name="id" value="' . $adopcion->id . '" readonly>
     <label for="idAnimal">ID Animal:</label>
     <input type="number" name="idAnimal" value="' . $adopcion->idAnimal . '">
     <label for="idUsuario">ID Usuario:</label>
@@ -33,10 +35,11 @@ foreach ($adopciones as $adopcion) {
     <input type="date" name="fecha" value="' . $adopcion->fecha . '">
     <label for="razon">Razón:</label>
     <input type="text" name="razon" value="' . $adopcion->razon . '"> 
-    <input type="submit" value="Actualizar"> 
-    <input type="submit" name="action" value="Borrar">';
+    <input class="btn-form" type="submit" value="Actualizar"> 
+    <input class="btn-form" type="submit" name="action" value="Borrar">';
 
     echo '</form>';
 }
 
 ?>
+
