@@ -31,30 +31,42 @@ class Adopcion extends Crud
 
     public function crear()
     {
-        $sql = "INSERT INTO adopcion (id, idAnimal, idUsuario, fecha, razon) VALUES (:id, :idAnimal, :idUsuario, :fecha, :razon)";
-        $consulta = $this->conexion->prepare($sql);
+        try {
+        
+            $sql = "INSERT INTO adopcion (id, idAnimal, idUsuario, fecha, razon) VALUES (:id, :idAnimal, :idUsuario, :fecha, :razon)";
+            $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(":id", $this->id);
-        $consulta->bindParam(":idAnimal", $this->idAnimal);
-        $consulta->bindParam(":idUsuario", $this->idUsuario);
-        $consulta->bindParam(":fecha", $this->fecha);
-        $consulta->bindParam(":razon", $this->razon);
+            $consulta->bindParam(":id", $this->id);
+            $consulta->bindParam(":idAnimal", $this->idAnimal);
+            $consulta->bindParam(":idUsuario", $this->idUsuario);
+            $consulta->bindParam(":fecha", $this->fecha);
+            $consulta->bindParam(":razon", $this->razon);
 
-        $consulta->execute();
+            $consulta->execute();
+        }
+        catch (PDOException $e) {
+            echo "Error: Comprueba que los ID introducidos sean válidos.";
+        }
+        
     }
 
     public function actualizar()
     {
-        $sql = "UPDATE adopcion SET idAnimal = :idAnimal, idUsuario = :idUsuario, fecha = :fecha, razon = :razon WHERE id = :id";
-        $consulta = $this->conexion->prepare($sql);
+        try {
+            $sql = "UPDATE adopcion SET idAnimal = :idAnimal, idUsuario = :idUsuario, fecha = :fecha, razon = :razon WHERE id = :id";
+            $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(":id", $this->id);
-        $consulta->bindParam(":idAnimal", $this->idAnimal);
-        $consulta->bindParam(":idUsuario", $this->idUsuario);
-        $consulta->bindParam(":fecha", $this->fecha);
-        $consulta->bindParam(":razon", $this->razon);
+            $consulta->bindParam(":id", $this->id);
+            $consulta->bindParam(":idAnimal", $this->idAnimal);
+            $consulta->bindParam(":idUsuario", $this->idUsuario);
+            $consulta->bindParam(":fecha", $this->fecha);
+            $consulta->bindParam(":razon", $this->razon);
 
-        $consulta->execute();
+            $consulta->execute();
+        }
+        catch (PDOException $e) {
+            echo "Error: Comprueba que los ID introducidos sean válidos.";
+        }
     }
 }
 
