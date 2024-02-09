@@ -29,10 +29,24 @@ class Adopcion extends Crud
         $this->$property = $value;
     }
 
+    public function isAdoptado($id)
+    {
+        try {
+            $sql = "SELECT COUNT(*)>0 AS 'isAdoptado' FROM adopcion WHERE idAnimal = :id";
+            $consulta = $this->conexion->prepare($sql);
+
+            $consulta->bindParam(":id", $id);
+            $consulta->execute();
+            return $consulta->fetch()[0];
+        } catch (PDOException $e) {
+            return "Error: Comprueba que los ID introducidos sean válidos.";
+        }
+    }
+
     public function crear()
     {
         try {
-        
+
             $sql = "INSERT INTO adopcion (id, idAnimal, idUsuario, fecha, razon) VALUES (:id, :idAnimal, :idUsuario, :fecha, :razon)";
             $consulta = $this->conexion->prepare($sql);
 
@@ -42,12 +56,11 @@ class Adopcion extends Crud
             $consulta->bindParam(":fecha", $this->fecha);
             $consulta->bindParam(":razon", $this->razon);
 
-            $consulta->execute();
+            return $consulta->execute();
+        } catch (PDOException $e) {
+            return "Error: Comprueba que los ID introducidos sean válidos.";
         }
-        catch (PDOException $e) {
-            echo "Error: Comprueba que los ID introducidos sean válidos.";
-        }
-        
+
     }
 
     public function actualizar()
@@ -63,9 +76,8 @@ class Adopcion extends Crud
             $consulta->bindParam(":razon", $this->razon);
 
             $consulta->execute();
-        }
-        catch (PDOException $e) {
-            echo "Error: Comprueba que los ID introducidos sean válidos.";
+        } catch (PDOException $e) {
+            return "Error: Comprueba que los ID introducidos sean válidos.";
         }
     }
 }

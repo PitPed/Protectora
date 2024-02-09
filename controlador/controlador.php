@@ -10,8 +10,6 @@
 
     session_start();
 
-
-
     include("vista/menu.php");
 
     const DEFAULT_VIEW = "usuario";

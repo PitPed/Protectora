@@ -34,34 +34,42 @@ class Animal extends Crud
 
     public function crear()
     {
-        $sql = "INSERT INTO animal (id, nombre, especie, raza, genero, color, edad) VALUES (:id, :nombre, :especie, :raza, :genero, :color, :edad)";
-        $consulta = $this->conexion->prepare($sql);
+        try {
+            $sql = "INSERT INTO animal (id, nombre, especie, raza, genero, color, edad) VALUES (:id, :nombre, :especie, :raza, :genero, :color, :edad)";
+            $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(":id", $this->id);
-        $consulta->bindParam(":nombre", $this->nombre);
-        $consulta->bindParam(":especie", $this->especie);
-        $consulta->bindParam(":raza", $this->raza);
-        $consulta->bindParam(":genero", $this->genero);
-        $consulta->bindParam(":color", $this->color);
-        $consulta->bindParam(":edad", $this->edad);
+            $consulta->bindParam(":id", $this->id);
+            $consulta->bindParam(":nombre", $this->nombre);
+            $consulta->bindParam(":especie", $this->especie);
+            $consulta->bindParam(":raza", $this->raza);
+            $consulta->bindParam(":genero", $this->genero);
+            $consulta->bindParam(":color", $this->color);
+            $consulta->bindParam(":edad", $this->edad);
 
-        $consulta->execute();
+            return $consulta->execute();
+        } catch (PDOException $e) {
+            return "Error: Comprueba que los ID introducidos sean válidos.";
+        }
     }
 
     public function actualizar()
     {
-        $sql = "UPDATE animal SET nombre = :nombre, especie = :especie, raza = :raza, genero = :genero, color = :color, edad = :edad WHERE id = :id";
-        $consulta = $this->conexion->prepare($sql);
+        try {
+            $sql = "UPDATE animal SET nombre = :nombre, especie = :especie, raza = :raza, genero = :genero, color = :color, edad = :edad WHERE id = :id";
+            $consulta = $this->conexion->prepare($sql);
 
-        $consulta->bindParam(":id", $this->id);
-        $consulta->bindParam(":nombre", $this->nombre);
-        $consulta->bindParam(":especie", $this->especie);
-        $consulta->bindParam(":raza", $this->raza);
-        $consulta->bindParam(":genero", $this->genero);
-        $consulta->bindParam(":color", $this->color);
-        $consulta->bindParam(":edad", $this->edad);
+            $consulta->bindParam(":id", $this->id);
+            $consulta->bindParam(":nombre", $this->nombre);
+            $consulta->bindParam(":especie", $this->especie);
+            $consulta->bindParam(":raza", $this->raza);
+            $consulta->bindParam(":genero", $this->genero);
+            $consulta->bindParam(":color", $this->color);
+            $consulta->bindParam(":edad", $this->edad);
 
-        $consulta->execute();
+            return $consulta->execute();
+        } catch (PDOException $e) {
+            return "Error: Comprueba que los ID introducidos sean válidos.";
+        }
     }
 }
 

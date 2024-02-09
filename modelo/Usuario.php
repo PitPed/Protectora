@@ -37,8 +37,8 @@ class Usuario extends Crud
         $stmt = $this->conexion->prepare("SELECT * FROM usuarios WHERE id = :id");
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
-        
-        if($stmt->rowCount() == 0){
+
+        try {
 
             $sql = "INSERT INTO usuarios(id, nombre, apellido, sexo, direccion, telefono) VALUES( :id , :nombre , :apellido, :sexo, :direccion, :telefono)";
             $consulta = $this->conexion->prepare($sql);
@@ -51,25 +51,25 @@ class Usuario extends Crud
             $consulta->bindParam(":telefono", $this->telefono);
 
             $consulta->execute();
-        }
-        else {
-            echo "Error: El ID ya existe, escoja otro.";
+        } catch (PDOException $e) {
+            return "Error: El ID ya existe, escoja otro.";
         }
     }
 
     public function actualizar()
     {
-        $sql = "UPDATE usuarios SET nombre = :nombre, apellido = :apellido, sexo = :sexo, direccion = :direccion, telefono = :telefono WHERE id = :id";
-        $consulta = $this->conexion->prepare($sql);
-        $consulta->bindParam(":id", $this->id);
-        $consulta->bindParam(":nombre", $this->nombre);
-        $consulta->bindParam(":apellido", $this->apellido);
-        $consulta->bindParam(":sexo", $this->sexo);
-        $consulta->bindParam(":direccion", $this->direccion);
-        $consulta->bindParam(":telefono", $this->telefono);
-
-
-        $consulta->execute();
+        try {
+            $sql = "UPDATE usuarios SET nombre = :nombre, apellido = :apellido, sexo = :sexo, direccion = :direccion, telefono = :telefono WHERE id = :id";
+            $consulta = $this->conexion->prepare($sql);
+            $consulta->bindParam(":id", $this->id);
+            $consulta->bindParam(":nombre", $this->nombre);
+            $consulta->bindParam(":apellido", $this->apellido);
+            $consulta->bindParam(":sexo", $this->sexo);
+            $consulta->bindParam(":direccion", $this->direccion);
+            $consulta->bindParam(":telefono", $this->telefono);
+        } catch (PDOException $e) {
+            return $consulta->execute();
+        }
     }
 }
 
