@@ -135,7 +135,11 @@ function borrarUsuario($id)
 function isAdoptado($id)
 {
     global $adopcionDummy;
-    return $adopcionDummy->isAdoptado($id);
+    try {
+        return $adopcionDummy->isAdoptado($id);
+    } catch (PDOException $e) {
+        return "Error: Comprueba que los ID introducidos sean válidos.";
+    }
 }
 
 /* echo isAdoptado(1829); */

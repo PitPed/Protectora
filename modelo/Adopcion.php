@@ -31,16 +31,14 @@ class Adopcion extends Crud
 
     public function isAdoptado($id)
     {
-        try {
-            $sql = "SELECT COUNT(*)>0 AS 'isAdoptado' FROM adopcion WHERE idAnimal = :id";
-            $consulta = $this->conexion->prepare($sql);
 
-            $consulta->bindParam(":id", $id);
-            $consulta->execute();
-            return $consulta->fetch()[0];
-        } catch (PDOException $e) {
-            return "Error: Comprueba que los ID introducidos sean válidos.";
-        }
+        $sql = "SELECT COUNT(*)>0 AS 'isAdoptado' FROM adopcion WHERE idAnimal = :id";
+        $consulta = $this->conexion->prepare($sql);
+
+        $consulta->bindParam(":id", $id);
+        $consulta->execute();
+        return $consulta->fetch()[0];
+
     }
 
     public function crear()

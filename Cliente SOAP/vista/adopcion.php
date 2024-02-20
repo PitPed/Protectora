@@ -1,7 +1,5 @@
 <h1>Adopciones</h1>
 
-
-<!-- Formulario de nueva adopción -->
 <form action="" method="POST">
     <input type="hidden" name="estaAdoptado" value="estaAdoptado">
     <label for="id">¿Está adoptado el siguiente animal?:</label>
@@ -13,6 +11,7 @@ if (isset($estaAdoptado)) {
     echo $estaAdoptado ? 'Sí' : 'No';
 }
 ?>
+<!-- Formulario de nueva adopción -->
 <form action="" method="POST">
     <input type="hidden" name="action" value="crear">
     <label for="id">ID:</label>

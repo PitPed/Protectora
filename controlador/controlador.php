@@ -79,7 +79,9 @@
         }
     }
 
-
+    if (isset($_POST['estaAdoptado'])) {
+        $estaAdoptado = file_get_contents('http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '/controlador/REST.php?id=' . $_POST['id']);
+    }
 
     include($views[$_SESSION["activeView"]]);
     ?>

@@ -1,5 +1,16 @@
 <h1>Adopciones</h1>
 
+<form action="" method="POST">
+    <input type="hidden" name="estaAdoptado" value="estaAdoptado">
+    <label for="id">¿Está adoptado el siguiente animal?:</label>
+    <input type="number" name="id" id="">
+    <input style="" class="btn-form" type="submit" value="Comprobar">
+</form>
+<?php
+if (isset($estaAdoptado)) {
+    echo $estaAdoptado ? 'Sí' : 'No';
+}
+?>
 
 <!-- Formulario de nueva adopción -->
 <form action="" method="POST">
