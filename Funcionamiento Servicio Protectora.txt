@@ -1,0 +1,11 @@
+He creado una carpeta llamada 'Cliente SOAP' que funciona cómo FrontEnd y consume el servicio que está alojado en /controlador/SOAP.php
+El servicio cubre toda la funcionalidad de la aplicación además del solicitado (servicio para saber si un animal está adoptado)
+Se puede consumir el servicio desde la vista Adopciones (el servicio para saber si un animal está adoptado)
+Las peticiones se hacen desde el controlador a través de la clase SoapClient (se crea la instancia en la línea 7)
+
+También he creado el servicio (animal adoptado) en REST
+El servicio está alojado en el archivo /controlador/REST.php
+Se puede consumir el servicio desde la vista Adopciones
+Las peticiones se hacen desde el controlador a través de la función file_get_content() (línea 83)
+
+La lógica de ambos servicios está en la clase Adopción (modelo/Adopcion.php) en un funcion llamada 'isAdoptado()'
